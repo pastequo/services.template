@@ -62,7 +62,7 @@ build.local: build.prepare
 	GO111MODULE=on go build -mod=vendor $(BUILD_ARGS) -ldflags "-X full_package_name/gitutil.CommitID=$(GIT_COMMIT) -s -w" -o $(PWD)/target/$(NAME) $(PWD)/cmd/XXX_server
 
 build.docker:
-	docker build --force-rm --build-arg build_args="$(BUILD_ARGS)" -t $(DOCKER_IMAGE):$(TAG) -f Dockerfile .
+	DOCKER_BUILDKIT=1 docker build --ssh default --build-arg build_args="$(BUILD_ARGS)" -t $(DOCKER_IMAGE):$(TAG) -f Dockerfile .
 
 build.docker.clear:
 	docker image prune --filter label=stage=builder
