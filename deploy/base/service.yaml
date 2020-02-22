@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: XXX
+  namespace: xxx
+  labels:
+    app: xxx
+spec:
+  selector:
+    app: xxx
+  ports:
+  - name: api
+    port: 80
+    targetPort: api
+  - name: metrics
+    port: 7777
+    targetPort: metrics
