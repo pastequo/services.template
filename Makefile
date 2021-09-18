@@ -1,6 +1,6 @@
 ## High-level targets
 
-.PHONY: tools build check serve run deploy logs
+.PHONY: tools build check serve deploy logs
 
 help: help.all
 tools: tools.clean tools.get
