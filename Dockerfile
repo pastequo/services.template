@@ -34,5 +34,8 @@ COPY --from=build /src/target/server /usr/bin/server
 # API port
 EXPOSE 8080
 
+# Metrics port
+EXPOSE 7777
+
 ENTRYPOINT ["/usr/bin/server", "--port", "8080"]
 
