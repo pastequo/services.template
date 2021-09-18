@@ -1,0 +1,28 @@
+swagger: "2.0"
+
+info:
+  title: XXX service
+  description:
+  version: "#VERSION"
+  contact:
+    name: pastequo@github
+
+schemes:
+  - http
+consumes:
+  - application/json
+produces:
+  - application/json
+
+paths:
+  /healthcheck:
+    get:
+      summary: Healthcheck route.
+      operationId: healthcheck
+      responses:
+        200:
+          description: Ok.
+
+responses:
+
+definitions:
