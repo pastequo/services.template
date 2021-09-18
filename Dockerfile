@@ -3,7 +3,7 @@
 ####################
 #  Tools & Source  #
 ####################
-FROM golang:1.13.8 AS tools
+FROM golang:1.16 AS tools
 
 LABEL stage=builder
 
@@ -18,15 +18,7 @@ COPY . ./
 #RUN mkdir -p -m 0600 ~/.ssh && \
 #    ssh-keyscan -t rsa xxx >> ~/.ssh/known_hosts
 
-RUN --mount=type=ssh make tools build.vendor
-
-
-#################
-#  Build-time	#
-#################
-FROM tools AS build
-
-LABEL stage=builder
+RUN --mount=type=ssh if [ ! -d "./vendor" ]; then make build.vendor; fi
 
 ARG build_args
 RUN GOOS=linux GOARCH=amd64 make build.local BUILD_ARGS="${build_args}"
@@ -40,6 +32,7 @@ FROM gcr.io/distroless/base
 COPY --from=build /src/target/server /usr/bin/server
 
 # API port
-EXPOSE 19101
+EXPOSE 8080
 
-ENTRYPOINT ["/usr/bin/server", "--host=0.0.0.0", "--port=19101"]
+ENTRYPOINT ["/usr/bin/server", "--port", "8080"]
+
