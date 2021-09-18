@@ -1,9 +1,9 @@
-# syntax=docker/dockerfile:experimental
+# syntax=docker/dockerfile:1.2
 
 ####################
 #  Tools & Source  #
 ####################
-FROM golang:1.16 AS tools
+FROM golang:1.17 AS build
 
 LABEL stage=builder
 
@@ -38,4 +38,5 @@ EXPOSE 8080
 EXPOSE 7777
 
 ENTRYPOINT ["/usr/bin/server", "--port", "8080"]
+
 
