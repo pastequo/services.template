@@ -163,7 +163,7 @@ serve.local:
 
 #help serve.docker: 
 serve.docker:
-	docker run -d --rm -p $(PORT):$(PORT) -v $(CURDIR)/deploy/local/:/etc/$(NAME)/ --name $(NAME) $(DOCKER_IMAGE):$(TAG) -c /etc/$(NAME)/.$(NAME).yaml
+	docker run -d --rm -p $(PORT):$(PORT) -v $(CURDIR)/deploy/local/:/etc/$(NAME)/ --name $(NAME) $(IMAGE_NAME):$(IMAGE_TAG) -c /etc/$(NAME)/.$(NAME).yaml
 	@docker logs -f $(NAME) | $(COLORIZE)
 
 #help serve.docker.stop: stop docker container
