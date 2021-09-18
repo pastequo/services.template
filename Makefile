@@ -82,7 +82,7 @@ GIT_COMMIT=$(shell git rev-list -1 HEAD --abbrev-commit)
 IMAGE_NAME=$(NAME)
 IMAGE_TAG=$(VERSION)-$(GIT_COMMIT)
 
-GO_ENV="GOPRIVATE="
+GO_ENV=GOPRIVATE=
 
 .PHONY: build.prepare build.swagger build.vendor build.vendor.full build.local build.docker build.docker.clear
 
@@ -159,7 +159,7 @@ PORT=8080
 
 #help serve.local: start server locally
 serve.local:
-	@$(CURDIR)/target/$(NAME) --host=$(HOST) --port=$(PORT) -c $(CURDIR)/deploy/local/.$(NAME).yaml | $(COLORIZE)
+	@$(CURDIR)/target/server --host=$(HOST) --port=$(PORT) -c $(CURDIR)/deploy/local/.$(NAME).yaml | $(COLORIZE)
 
 #help serve.docker: 
 serve.docker:
