@@ -7,6 +7,7 @@ package tools
 // tool dependencies
 import (
 	_ "github.com/frapposelli/wwhrd"
+	_ "github.com/git-chglog/git-chglog/cmd/git-chglog"
 	_ "github.com/go-swagger/go-swagger/cmd/swagger"
 	_ "github.com/golangci/golangci-lint/cmd/golangci-lint"
 	_ "github.com/izumin5210/gex/cmd/gex"
@@ -18,6 +19,7 @@ import (
 //  go generate ./tools.go
 //
 //go:generate go build -v -o=./bin/wwhrd github.com/frapposelli/wwhrd
+//go:generate go build -v -o=./bin/git-chglog github.com/git-chglog/git-chglog/cmd/git-chglog
 //go:generate go build -v -o=./bin/swagger github.com/go-swagger/go-swagger/cmd/swagger
 //go:generate go build -v -o=./bin/golangci-lint github.com/golangci/golangci-lint/cmd/golangci-lint
 //go:generate go build -v -o=./bin/gex github.com/izumin5210/gex/cmd/gex

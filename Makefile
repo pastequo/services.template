@@ -9,6 +9,7 @@ check: check.imports check.fmt check.lint check.test
 serve: serve.local
 deploy: deploy.app
 logs: logs.k8s
+changelog: changelog.generate
 
 # Colors used in this Makefile
 escape=$(shell printf '\033')
@@ -236,6 +237,17 @@ DEPLOYMENT=deployment/$(NAME)
 logs.k8s:
 	$(if $(ENV_SET), @kubectl config use-context $(K8S_CTX))
 	@kubectl logs -n $(NAMESPACE) -f $(DEPLOYMENT) $(if $(TAIL), --tail=$(TAIL)) | $(COLORIZE)
+
+
+#####################
+# Changelog targets #
+#####################
+
+.PHONY: changelog.generate
+
+#help changelog.generate: regenerate full changelog
+changelog.generate:
+	$(TOOLS_DIR)/git-chglog --output CHANGELOG.md ..v$(VERSION)
 
 
 #####################
